@@ -1,0 +1,101 @@
+
+
+// ce doc permet d'afficher l'ajout de contact dans la liste des clients et dans le cmd. Le retirer rend le bouton Valider inactif
+
+
+<html>
+<head>
+<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.js"
+	  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+	  crossorigin="anonymous"></script>
+</head>	
+	
+<body>
+
+<div class="container"> 
+	<div class="row">
+		<div class="col-md-12 text-center jumbotron">
+		<h1>CRM Basique</h1>
+		</div>
+	</div>
+	          <!------------------- ce bloc passe en 2e position après la clientList---------------->
+				<div class="col-md-12">
+				<h3>Ajouter un nouveau client</h3>
+               <!--L'attribut "form action" spécifie où envoyer les données de formulaire lorsqu'un formulaire est soumis.
+               il s'ecrit form action="URL"  ici cela se rapporte à "add"-->
+				<form action="add">
+				Prénom :
+					<input type="text" name="firstName" value=""> <!--champ pour écrire. Voir taille dans le css-->
+				Nom :
+					<input type="text" name="lastName" value="">
+				email :
+					<input type="text" name="email" value="">
+				Téléphone :
+					<input type="text" name="phone" value="">
+					
+					<input class="btn btn-primary" type="submit" value="Ajouter">
+				</form>
+				</div>
+				
+				<div class="col-md-12">
+				<h3>Modifier un client</h3>
+				<form action="update">  <!--L'attribut "form action" est rattaché à update dans server-->
+				Position :
+					<input type="text" name="i" value="">
+				Propriété :
+					<select name="property" id="">
+						<option>firstName</option>
+						<option>lastName</option>
+						<option>email</option>
+						<option>phone</option>
+					</select>
+				Valeure :
+					<input type="text" name="value" value="">
+					
+					<input class="btn btn-primary" type="submit" value="Modifier">
+				</form>
+			</div>
+			
+			<div class="col-md-12">
+			<h3>Supprimer un client</h3>
+				<form action="delete">
+				Position :
+					<input type="text" name="i" value="">
+									
+					<input class="btn btn-warning" type="submit" value="Supprimer">
+				</form>
+			</div>
+	
+	<div class="row">
+				<div class="col-md-12 col-md-offset-5 text-justify">
+				<h3>Liste des clients</h3>
+<!--boucle pour afficher l'ensemble des clients-----------------------------------------------------------------  
+le signe pourcent est utilisé pour encapsuler toute la partie de code qui communique avec le server (backend) en ejs -->
+<%
+for(var i=0; i<clients.length; i++) {
+%>
+   <span class="glyphicon glyphicon-glass"> 
+   <%=i%> <%= clients[i].firstName %>
+   <%= clients[i].lastName %>
+   <%= clients[i].email %>
+   <%= clients[i].phone %></span>
+   <br>
+<%
+}
+%>
+</div>
+				
+		</div>
+	</div>
+</body>
+</html>

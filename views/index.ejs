@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Creative - Start Bootstrap Theme</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/creative.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+
+  
+    <header>
+        <div class="header-content">
+            <div class="header-content-inner">
+                <h1 id="homeHeading">CRM Basique</h1>
+                <hr>
+                <div class="row">
+                 <div class="col-md-12">
+					 <h3>Liste des clients</h3>
+				
+<!--ligne 55 : L'attribut "form action" spécifie où envoyer les données de formulaire lorsqu'un formulaire est soumis.
+il s'ecrit form action="URL"  ici cela se rapporte à "update" dans le server.js (on est toujours en EJS >> server)       
+ligne 56 clients[i].firstName pourcent placé dans value =la donnée qui sera envoyé au serveur - Les pourcent sont des signes de l'EJS >> Server
+Ligne 61 : Les éléments input type="hidden" permettent aux développeurs web d'inclure des données qui ne peuvent pas être vues ou modifiées lorsque le formulaire est envoyé. Cela permet par exemple d'envoyer l'identifiant d'une commande ou un jeton de sécurité unique. Les champs de ce type sont invisibles sur la page.-->
+				<%
+				for(var i=0; i<clients.length; i++) {
+				%><font size="2">
+				  <form action="update">
+				   <input type="text" name="firstName" value="<%= clients[i].firstName %> " style="color:black"> 
+				   <input type="text" name="lastName" value="<%= clients[i].lastName %>" style="color:black">
+				   <input type="text" name="email" value="<%= clients[i].email %>" style="color:black">
+				   <input type="text" name="phone" value="<%= clients[i].phone %>" style="color:black">
+				   <input type="hidden" name="i" value="<%=i%>">
+					  <a href="/delete?i=<%=i%>"> <span class="glyphicon glyphicon-trash"></span></a> <!--dessin poubelle - voir lien de /delete?i=...-->
+					<input class="btn btn-xs" type="submit" value="Modifier">
+				   </form>
+				   </font>
+				<%
+				}
+					%>
+				</div>
+                   	  </div>	
+                  <div class="row">
+                 <div class="col-md-12">
+				<h3>Ajouter un nouveau client</h3>
+				<form action="add">
+					<div class="form-group">
+					<label text-align:left>Prénom</label>
+					<input type="text" name="firstName" class="form-control" value="" style="color:black">
+					</div>
+					<div class="form-group">
+					<label>Nom</label>
+					<input type="text" name="lastName" class="form-control" value="" style="color:black">
+					</div>
+					<div class="form-group">
+					<label>email</label>
+					<input type="text" name="email" class="form-control" value="" style="color:black">
+					</div>
+					<div class="form-group">
+					<label>Phone</label>
+					<input type="text" name="phone" class="form-control" value="" style="color:black">
+					</div>
+					<div class="form-group">
+					<input class="btn btn-default" type="submit" value="Ajouter">
+					</div>
+				</form>
+				</div>       
+            </div>
+        </div>
+		</div>
+    </header>
+
+   
+
+    
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scsrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/creative.min.js"></script>
+
+</body>
+
+</html>
